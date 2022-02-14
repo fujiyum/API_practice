@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+  }
+  
   root 'home#top'
   get 'mypage', to: 'homes#mypage'
   get 'search', to: 'searches#search'
