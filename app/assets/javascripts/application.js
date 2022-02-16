@@ -20,7 +20,7 @@
 $(function() {
     $(document).on('turbolinks:load', () => {
         $('#user_postal_code').jpostal({
-            postal_code : [
+            postcode : [
                 '#user_postal_code'
             ],
             address: {
