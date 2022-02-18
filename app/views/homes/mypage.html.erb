@@ -1,0 +1,39 @@
+<h2>Your MAP</h2>
+<div id='map' class="<%= current_user.prefecture_code + current_user.city + current_user.street %>"></div>
+
+<style>
+    #map{
+        height: 300px;
+    }
+    
+</style>
+
+<script>
+    let map
+    let geocoder
+    
+    function initMap(){
+        geocoder = new google.maps.Geocoder()
+        geocoder.geocode({ 'address': $('#map').attr('class')}, function(results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            }else {
+                alert('Geocode was not successful for the following reason: ' + status)
+            }
+        });
+        
+        map = new google.maps.Map(document.getElementById('map'),{
+        cneter: {lat: -35.6809591, lng: 139.7673068},
+        zoom: 13
+        });
+    }
+    
+    function codeAddress(){
+        let inputAddress = document.getElementById('address').value;
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>
