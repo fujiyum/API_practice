@@ -1,2 +1,18 @@
-<h1>Book#new</h1>
-<p>Find me in app/views/book/new.html.erb</p>
+<h1>書籍の新規登録</h1>
+<%= form_tag('/booksearch', method: :get) do %>
+    <div class="input-group">
+        <%= search_field_tag "keyword", params[:keyword], class:"form-controll", placeholder:"キーワード検索" %>
+        <span class="input-group-btn">
+            <%= submit_tag "検索", class:"btn btn-primary" %>
+        </span>
+    </div>
+<% end %>
+<h2>検索結果</h2>
+<% if @books.present? %>
+    <% @books.each do |book| %>
+        <img src="<%= book[1] %>" width="40" vspace="2">
+        <%= book[0] %> |
+        <%= book[2] %> |
+        <%= book[3] %> <br>
+    <% end %>
+<% end %>
