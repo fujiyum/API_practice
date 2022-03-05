@@ -1,8 +1,8 @@
-class BookController < ApplicationController
-  
+class BooksController < ApplicationController
+
   def new
      @book = Book.new
-     
+
     if params[:keyword].present?
       require 'net/http'
       url = 'https://www.googleapis.com/books/v1/volumes?q='
@@ -23,4 +23,5 @@ class BookController < ApplicationController
       end
     end
   end
+
 end
