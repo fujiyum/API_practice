@@ -16,3 +16,17 @@
         <%= book[3] %> <br>
     <% end %>
 <% end %>
+
+<%= form_with scope: :book, url: books_path, local: true do |form| %>
+    <%= render 'shared/error_massages' %>
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-controll', value: "#{@title}" %>
+    
+    <%= form.label :author %>
+    <%= form.text_field :author, class: "form-controll", value: "#{@author}" %>
+    
+    <%= form.hidden_field :image, class: "form-controll", value: "#{@image}" %>
+    
+    <%= form.submit "Save Book", class: "btn btn-primary" %>
+    
+<% end %>
