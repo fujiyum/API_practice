@@ -22,6 +22,12 @@ class BooksController < ApplicationController
         @books[x][3] = @bookjson.dig("items", x, "volumeInfo", "industryIdentifiers", 0, "identifier")
       end
     end
+    
+    @title = params[:title] if params[:title].present?
+    @code = params[:code] if params[:code].present?
+    @author = params[:author] if params[:author].present?
+    @img = params[:img] if params[:img].present?
+    
   end
 
 end

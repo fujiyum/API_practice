@@ -11,7 +11,7 @@
 <% if @books.present? %>
     <% @books.each do |book| %>
         <img src="<%= book[1] %>" width="40" vspace="2">
-        <%= book[0] %> |
+        <%= link_to book[0], controller: "books", action: "new", title: book[0], code: book[3], author: book[2], img: book[1] %> |
         <%= book[2] %> |
         <%= book[3] %> <br>
     <% end %>
