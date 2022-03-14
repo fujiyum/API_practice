@@ -29,5 +29,16 @@ class BooksController < ApplicationController
     @img = params[:img] if params[:img].present?
     
   end
+  
+  def create
+    @book = Book.new(book_params)
+    @book.save
+  end
+  
+  private
+  def book_params
+    params.require(:book).permit(:title, :code, :author, :img)
+  end
+  
 
 end
