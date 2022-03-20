@@ -22,28 +22,29 @@ class BooksController < ApplicationController
         @books[x][3] = @bookjson.dig("items", x, "volumeInfo", "industryIdentifiers", 0, "identifier")
       end
     end
-    
+
     @title = params[:title] if params[:title].present?
     @code = params[:code] if params[:code].present?
     @author = params[:author] if params[:author].present?
-    @img = params[:img] if params[:img].present?
-    
+    @image = params[:image] if params[:image].present?
+
   end
-  
+
   def create
     @book = Book.new(book_params)
     @book.save
+    redirect_to book_path(@book.id)
   end
-  
+
   def show
-    @book = Book.find(params[])
+    @book = Book.find(params[:id])
   end
-  
+
   private
-  
+
   def book_params
     params.require(:book).permit(:title, :code, :author, :image)
   end
-  
+
 
 end
